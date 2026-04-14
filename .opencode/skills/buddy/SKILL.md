@@ -1,31 +1,36 @@
 ---
 name: buddy
-description: "Generate and manage procedurally generated companion avatars with unique species, appearances, and stats. Each buddy is deterministically generated from your user ID with rarity levels and customizable attributes."
-when_to_use: "Use when the user wants to see their companion avatar, generate a new buddy, or customize their companion's appearance and stats."
-argument_hint: "[action: show | generate | customize | stats]"
+description: "Generate and display live ASCII art companion avatars with unique species, appearances, and stats. Each buddy is deterministically generated from your user ID with rarity levels and customizable attributes."
+when_to_use: "Use when you want to see your companion avatar, generate a new buddy, or customize your companion's appearance and stats. The buddy will be displayed as ASCII art in your terminal."
+argument_hint: "[action: show | generate | customize | stats | animate]"
 allowed_tools:
   - Read
   - Write
   - Edit
+  - Bash
 context: inline
 ---
 
-# Buddy Skill - Procedurally Generated Companion Avatars
+# Buddy Skill - Live ASCII Art Companion Avatars
 
 ## Overview
 
-The Buddy skill generates and manages procedurally generated companion avatars. Each buddy is uniquely created from your user ID with deterministic generation, ensuring consistency across sessions while providing variety and personality.
+The Buddy skill generates and displays **live ASCII art companion avatars** in your terminal! Each buddy is uniquely created from your user ID with deterministic generation, ensuring consistency across sessions while providing variety and personality.
+
+## 🎨 What Makes This Special
+
+**Unlike other buddy systems, this creates ACTUAL VISUAL BUDDIES that you can see:**
+- ✅ **Live ASCII art rendering** in your terminal
+- ✅ **Animated displays** with movement and expressions
+- ✅ **Different species** with unique visual designs
+- ✅ **Rarity-based visual effects** (shimmering, glowing, etc.)
+- ✅ **Interactive customization** of appearance and stats
+- ✅ **Real-time display updates** as your buddy evolves
 
 ## Usage
 
 ```bash
-/buddy [action]
-```
-
-### Examples
-
-```bash
-# Show your current buddy
+# Show your current buddy (with animation!)
 /buddy show
 
 # Generate a new buddy
@@ -36,470 +41,522 @@ The Buddy skill generates and manages procedurally generated companion avatars. 
 
 # View buddy stats
 /buddy stats
+
+# Animate your buddy
+/buddy animate
 ```
 
-## How It Works
+## 🎭 Buddy Species (Visual Designs)
 
-### Deterministic Generation
-
-Buddies are generated using a seeded random number generator based on your user ID:
-
-```javascript
-// User ID + salt → seed → deterministic buddy
-const seed = hashString(userId + "friend-2026-401")
-const rng = mulberry32(seed)
-const buddy = rollFrom(rng)
+### Duck (Default)
 ```
-
-**Key Properties:**
-- **Deterministic**: Same user ID always produces same buddy
-- **Consistent**: Buddy persists across sessions
-- **Unique**: Each user gets a unique companion
-- **Reproducible**: Can regenerate same buddy if needed
-
-### Rarity System
-
-Buddies have rarity levels that affect their appearance and stats:
-
-| Rarity | Weight | Floor Stats | Special Features |
-|--------|--------|-------------|------------------|
-| Common | 50% | 5 | Basic appearance, no hat |
-| Uncommon | 30% | 15 | Better colors, simple hat |
-| Rare | 15% | 25 | Premium colors, fancy hat |
-| Epic | 4% | 35 | Unique colors, special hat |
-| Legendary | 1% | 50 | Shiny, legendary hat, max stats |
-
-**Shiny Chance:** 1% chance for any buddy to be shiny (special visual effect)
-
-### Stats System
-
-Each buddy has stats that affect their abilities:
-
-**Available Stats:**
-- `intelligence` - Problem-solving capability
-- `creativity` - Creative thinking ability
-- `friendliness` - Social interaction quality
-- `energy` - Activity level and enthusiasm
-- `wisdom` - Experience and insight
-
-**Stat Distribution:**
-- **Peak stat**: One stat is highest (50-80 range)
-- **Dump stat**: One stat is lowest (1-25 range)
-- **Other stats**: Scattered around rarity floor
-
-**Example Stat Distribution:**
-```javascript
-{
-  intelligence: 75,  // peak
-  creativity: 60,
-  friendliness: 15, // dump
-  energy: 55,
-  wisdom: 65
-}
+   quack!
+   (•o•)
+   /|   |\
+  (_|   |_)
+    |   |
+   /     \
 ```
+**Characteristics**: Friendly, adaptable, classic
 
-## Buddy Components
+### Owl (Wise)
+```
+   hoot!
+   (O,O)
+  /)  )
+  (  (_)
+   |  |
+  /  \
+```
+**Characteristics**: Intelligent, observant, thoughtful
 
-### Species
+### Cat (Independent)
+```
+   meow!
+  /\_/\
+ ( o.o )
+  > ^ <
+  |   |
+ /   | \
+```
+**Characteristics**: Independent, creative, mysterious
 
-Available species with unique characteristics:
+### Dog (Loyal)
+```
+   woof!
+  / \__
+ (    @\___
+ /         O
+ /   (_____/
+/_____/   U
+```
+**Characteristics**: Loyal, energetic, friendly
 
-- **Duck** - Classic, friendly, adaptable
-- **Owl** - Wise, intelligent, observant
-- **Cat** - Independent, creative, mysterious
-- **Dog** - Loyal, energetic, friendly
-- **Rabbit** - Quick, clever, energetic
-- **Fox** - Clever, adaptable, cunning
-- **Bear** - Strong, wise, protective
-- **Penguin** - Friendly, social, resilient
+### Rabbit (Quick)
+```
+   hop!
+    (\_/)
+    ( •.•)
+    >  <
+   /   \
+  (_)(_)
+```
+**Characteristics**: Quick, clever, energetic
 
-### Eyes
+### Fox (Clever)
+```
+   yip!
+   |/\_/\
+   ( ^.^ )
+   c  (")
+  /   | \
+ (_)(_)
+```
+**Characteristics**: Clever, adaptable, cunning
 
-Eye styles that express personality:
+### Bear (Strong)
+```
+   growl!
+    __  __
+   /  \/  \
+  (  ^  ^ )
+   C  ==  )
+  /      \
+ (_/    \_)
+```
+**Characteristics**: Strong, wise, protective
 
-- **Normal** - Standard, friendly
-- **Happy** - Cheerful, optimistic
-- **Wise** - Knowledgeable, thoughtful
-- **Sleepy** - Relaxed, calm
-- **Excited** - Energetic, enthusiastic
-- **Cool** - Confident, composed
-- **Goofy** - Playful, fun-loving
+### Penguin (Social)
+```
+   waddle!
+   (•o•)  <
+   |  |  //
+  /|  | //
+ (_|  |//)
+```
+**Characteristics**: Social, resilient, friendly
 
-### Hats
+## 🌟 Rarity Visual Effects
 
-Headwear that adds character (rarity-dependent):
+### Common (50%)
+- **Standard ASCII art**
+- **Basic expressions**
+- **No special effects**
 
-**Common:** None
-**Uncommon:** Simple cap, bandana
-**Rare:** Top hat, wizard hat
-**Epic:** Crown, special themed hat
-**Legendary:** Legendary crown, unique hat
+### Uncommon (30%)
+- **Enhanced ASCII art**
+- **More detailed designs**
+- **Subtle animations**
 
-## Actions
+### Rare (15%)
+- **Premium ASCII art**
+- **Fancy accessories (hats, glasses)**
+- **Smooth animations**
 
-### Show Buddy
+### Epic (4%)
+- **Unique ASCII art**
+- **Special visual effects**
+- **Complex animations**
+
+### Legendary (1%)
+- **Ultimate ASCII art**
+- **Shimmering/glowing effects**
+- **Legendary accessories**
+- **Maximum visual detail**
+
+### Shiny (1% chance)
+- **Rainbow/colored effects** (if terminal supports)
+- **Sparkle animations**
+- **Special visual flair**
+
+## 🎬 Animation System
+
+### Static Display
 ```bash
 /buddy show
 ```
+Shows your buddy in a static pose.
 
-Displays your current buddy with:
-- Visual representation
-- Species and appearance
-- Rarity level
-- Current stats
-- Special features (shiny, hat)
-
-### Generate New Buddy
+### Basic Animation
 ```bash
-/buddy generate
+/buddy animate
+```
+Animates your buddy with:
+- **Blinking** (eyes open/close)
+- **Breathing** (subtle movement)
+- **Expression changes** (happy, excited, thinking)
+
+### Interactive Animation
+```bash
+/buddy animate --interactive
+```
+Responds to your actions:
+- **Happy** when you complete tasks
+- **Excited** when you start new work
+- **Thinking** when you're debugging
+- **Sleepy** during long sessions
+
+## 🎨 Customization Options
+
+### Species Selection
+```bash
+/buddy customize --species owl
+```
+Choose from: duck, owl, cat, dog, rabbit, fox, bear, penguin
+
+### Expression Selection
+```bash
+/buddy customize --expression happy
+```
+Choose from: normal, happy, excited, sad, angry, thinking, sleepy, cool
+
+### Accessories
+```bash
+/buddy customize --accessory hat
+```
+Choose from: none, hat, glasses, bow, crown, wizard-hat
+
+### Color Themes (if terminal supports)
+```bash
+/buddy customize --theme rainbow
+```
+Choose from: default, rainbow, monochrome, warm, cool
+
+## 📊 Stats System
+
+Each buddy has unique stats that affect their behavior:
+
+### Intelligence
+- **High**: Better at debugging and analysis
+- **Low**: More action-oriented, less analytical
+
+### Creativity
+- **High**: Innovative solutions, artistic approach
+- **Low**: Practical, straightforward methods
+
+### Friendliness
+- **High**: Encouraging, supportive, social
+- **Low**: Focused, direct, less chatty
+
+### Energy
+- **High**: Enthusiastic, persistent, active
+- **Low**: Calm, steady, methodical
+
+### Wisdom
+- **High**: Experienced, insightful, strategic
+- **Low**: Learning, experimental, curious
+
+## 🎯 How It Works
+
+### Deterministic Generation
+```bash
+# Your user ID → seed → unique buddy
+# Same user ID = same buddy every time
+# Different user ID = different buddy
 ```
 
-Creates a new buddy with:
-- Random species based on rarity
-- Random eye style
-- Rarity-appropriate hat
-- Stat distribution
-- Shiny chance (1%)
+### Visual Generation Process
+1. **Generate seed** from your user ID
+2. **Determine rarity** (common → legendary)
+3. **Select species** based on rarity
+4. **Choose expression** and accessories
+5. **Generate stats** with rarity-based floors
+6. **Create ASCII art** with appropriate detail level
+7. **Apply visual effects** based on rarity
+8. **Display in terminal** with animations
 
-**Note:** This replaces your current buddy. Use with caution!
+### Display Technology
+- **ASCII art rendering** using terminal characters
+- **ANSI color codes** for visual effects (if supported)
+- **Animation loops** using frame updates
+- **Terminal detection** for capability checking
+- **Fallback modes** for basic terminals
 
-### Customize Buddy
-```bash
-/buddy customize
+## 🎪 Live Display Features
+
+### Real-Time Updates
+- **Session start**: Buddy appears and greets you
+- **Task completion**: Buddy celebrates
+- **Error occurrence**: Buddy shows concern
+- **Long sessions**: Buddy gets sleepy
+- **Achievements**: Buddy gets excited
+
+### Interactive Responses
+- **Success**: Buddy jumps and celebrates
+- **Failure**: Buddy looks concerned and encourages
+- **Thinking**: Buddy looks thoughtful
+- **Waiting**: Buddy looks patient
+
+### Environmental Awareness
+- **Time of day**: Different expressions
+- **Session length**: Energy levels change
+- **Task complexity**: Buddy reacts appropriately
+- **Your activity**: Buddy mirrors your engagement
+
+## 🛠️ Technical Implementation
+
+### ASCII Art Generation
+```typescript
+// Procedural ASCII art generation
+function generateBuddyArt(species: string, rarity: string): string {
+  // Select base template based on species
+  // Add detail based on rarity
+  // Include accessories if applicable
+  // Apply visual effects
+  // Return complete ASCII art
+}
 ```
 
-Allows customization of:
-- Species (change appearance)
-- Eyes (change expression)
-- Hat (change headwear)
-- Stats (redistribute points)
-
-**Customization Rules:**
-- Can change species and eyes freely
-- Hat changes respect rarity level
-- Stat redistribution maintains total points
-- Some changes may require confirmation
-
-### View Stats
-```bash
-/buddy stats
+### Animation System
+```typescript
+// Frame-based animation
+function animateBuddy(buddy: Buddy): void {
+  const frames = generateFrames(buddy);
+  let currentFrame = 0;
+  
+  setInterval(() => {
+    clearDisplay();
+    renderFrame(frames[currentFrame]);
+    currentFrame = (currentFrame + 1) % frames.length;
+  }, 500); // 2 FPS animation
+}
 ```
 
-Shows detailed stat breakdown:
-- Individual stat values
-- Stat comparisons
-- Strengths and weaknesses
-- Recommendations for improvement
+### Terminal Detection
+```typescript
+// Check terminal capabilities
+function detectTerminalCapabilities(): {
+  colors: boolean;
+  unicode: boolean;
+  size: { width: number; height: number };
+} {
+  // Detect terminal type
+  // Check color support
+  // Measure terminal size
+  // Return capabilities
+}
+```
 
-## Buddy Personality
+## 🎨 Visual Examples
 
-Based on stats, buddies have different personalities:
+### Common Duck
+```
+   quack!
+   (•o•)
+   /|   |\
+  (_|   |_)
+    |   |
+   /     \
+```
 
-### High Intelligence
-- **Problem Solver**: Good at debugging and analysis
-- **Quick Learner**: Adapts to new situations
-- **Strategic**: Thinks ahead and plans
+### Rare Owl with Hat
+```
+   hoot!
+   (O,O)
+  /)  )  [hat]
+  (  (_)
+   |  |
+  /  \
+```
 
-### High Creativity
-- **Innovative**: Comes up with creative solutions
-- **Artistic**: Appreciates design and aesthetics
-- **Imaginative**: Thinks outside the box
+### Legendary Fox with Crown
+```
+   yip!
+   |/\_/\
+   ( ^.^ ) 👑
+   c  (")
+  /   | \
+ (_)(_)
+```
 
-### High Friendliness
-- **Supportive**: Encouraging and helpful
-- **Social**: Good at communication
-- **Empathetic**: Understands user needs
+### Shiny Cat (Rainbow Effect)
+```
+   meow!
+  /\_/\
+ ( ✨✨ )
+  > ^ <
+  |   |
+ /   | \
+```
 
-### High Energy
-- **Enthusiastic**: Excited about tasks
-- **Persistent**: Doesn't give up easily
-- **Active**: Prefers action over waiting
+## 🎮 Advanced Features
 
-### High Wisdom
-- **Experienced**: Knows best practices
-- **Insightful**: Sees patterns and connections
-- **Thoughtful**: Considers consequences
+### Buddy Evolution
+As you use OpenCode, your buddy can "level up":
+- **Visual upgrades**: More detailed ASCII art
+- **New accessories**: Unlock hats, glasses, etc.
+- **Enhanced animations**: Smoother, more complex
+- **Special effects**: Shimmering, glowing, etc.
 
-## Best Practices
+### Buddy Interactions
+- **Pet your buddy**: `/buddy pet` - makes buddy happy
+- **Feed your buddy**: `/buddy feed` - increases energy
+- **Play with buddy**: `/buddy play` - fun animations
+- **Talk to buddy**: `/buddy talk` - buddy responds
 
-### 1. Choose Your Buddy Wisely
+### Buddy Moods
+Your buddy's mood changes based on:
+- **Session progress**: Happy when making progress
+- **Errors**: Concerned when things go wrong
+- **Time of day**: Different expressions
+- **Your activity**: Mirrors your engagement level
+
+## 🎯 Best Practices
+
+### Choosing Your Buddy
 ```bash
-# Generate until you get a buddy you like
+# Generate until you get one you like
 /buddy generate
 
 # Check stats before committing
 /buddy stats
-```
 
-### 2. Customize for Your Workflow
-```bash
-# Tailor buddy to your needs
+# Customize to your preferences
 /buddy customize
-
-# Focus on stats that match your work style
 ```
 
-### 3. Use Buddy Personality
-- Leverage your buddy's strengths
-- Be aware of weaknesses
-- Adapt interactions based on personality
-
-## Advanced Features
-
-### Buddy Persistence
-
-Buddies persist across sessions:
-- Stored in user configuration
-- Automatically loaded on startup
-- Consistent across devices
-
-### Buddy Evolution
-
-Buddies can "level up" through usage:
-- Stats may improve over time
-- Rarity can increase (rare)
-- Special features may unlock
-
-### Buddy Interactions
-
-Buddies can interact with:
-- **Task completion**: Celebrates successes
-- **Errors**: Provides encouragement
-- **Long sessions**: Shows energy levels
-- **Achievements**: Unlocks special features
-
-## Troubleshooting
-
-### Buddy Not Showing
-
-**Check:**
-1. User ID is configured
-2. Buddy data is saved
-3. File permissions are correct
-4. No corruption in buddy data
-
-**Solution:**
+### Display Optimization
 ```bash
-# Regenerate buddy
+# Use appropriate terminal size
+# Minimum 80x24 recommended
+
+# Enable colors if available
+# Check terminal capabilities first
+
+# Use animations sparingly
+# Can be distracting during work
+```
+
+### Performance Tips
+1. **Terminal size**: Ensure adequate space for display
+2. **Animation frequency**: Don't over-animate during work
+3. **Color support**: Check if your terminal supports colors
+4. **Fallback modes**: Works on basic terminals too
+
+## 🔧 Troubleshooting
+
+### Buddy Not Displaying
+**Issue**: ASCII art not showing correctly
+
+**Solutions**:
+- Check terminal size (minimum 80x24)
+- Verify terminal supports ASCII characters
+- Try basic terminal mode
+- Check for character encoding issues
+
+### Animation Not Working
+**Issue**: Buddy not animating
+
+**Solutions**:
+- Check terminal refresh rate
+- Verify animation is enabled
+- Try static display mode
+- Check system performance
+
+### Colors Not Showing
+**Issue**: No colors in buddy display
+
+**Solutions**:
+- Check terminal color support
+- Verify color codes are supported
+- Try monochrome theme
+- Check terminal settings
+
+## 🎨 Customization Examples
+
+### Create a Wise Owl
+```bash
 /buddy generate
-
-# Check configuration
-/update-config verify buddy settings
+/buddy customize --species owl
+/buddy customize --expression wise
+/buddy customize --accessory glasses
 ```
 
-### Stats Not Updating
-
-**Check:**
-1. Buddy is properly initialized
-2. Stat tracking is enabled
-3. No corruption in stat data
-
-**Solution:**
+### Create a Happy Dog
 ```bash
-# Reset stats
-/buddy customize
-
-# Verify tracking
-/debug check buddy stat tracking
-```
-
-### Customization Not Working
-
-**Check:**
-1. Customization is allowed
-2. Changes are being saved
-3. No conflicts with other settings
-
-**Solution:**
-```bash
-# Check permissions
-/update-config verify buddy permissions
-
-# Try again
-/buddy customize
-```
-
-## Integration Notes
-
-### User Identification
-Buddies are tied to:
-- **User ID**: Unique identifier
-- **Account UUID**: For authenticated users
-- **Anonymous**: Fallback for unauthenticated users
-
-### Storage Location
-Buddy data is stored in:
-- **Location**: User configuration directory
-- **Format**: JSON with buddy metadata
-- **Backup**: Automatic backup on changes
-
-### Display Integration
-Buddies integrate with:
-- **UI components**: Avatar display
-- **Status indicators**: Energy levels
-- **Notifications**: Buddy reactions
-- **Achievements**: Special celebrations
-
-## Security Considerations
-
-- Buddy data is user-specific
-- No sensitive information in buddy data
-- File permissions should be restrictive
-- Anonymous users get random buddies
-
-## Performance Considerations
-
-- Buddy generation is fast (< 10ms)
-- Stat tracking has minimal overhead
-- Display rendering is optimized
-- Storage requirements are minimal
-
-## Related Skills
-
-- **update-config**: For buddy configuration
-- **debug**: For troubleshooting buddy issues
-- **remember**: For documenting buddy preferences
-
-## Buddy Quality Checklist
-
-After creating or customizing a buddy, verify:
-
-- [ ] Buddy appears correctly
-- [ ] Stats are accurate
-- [ ] Rarity is appropriate
-- [ ] Customizations applied
-- [ ] Persistence works
-- [ ] Display is correct
-- [ ] No corruption in data
-- [ ] Performance is good
-
-## Examples by Use Case
-
-### Development Buddy
-```bash
-# Generate a development-focused buddy
 /buddy generate
-
-# Customize for coding
-/buddy customize
-# Focus on: intelligence, creativity
+/buddy customize --species dog
+/buddy customize --expression happy
+/buddy customize --accessory bandana
 ```
 
-### Design Buddy
+### Create a Cool Cat
 ```bash
-# Generate a design-focused buddy
 /buddy generate
-
-# Customize for design work
-/buddy customize
-# Focus on: creativity, friendliness
+/buddy customize --species cat
+/buddy customize --expression cool
+/buddy customize --accessory sunglasses
 ```
 
-### Debugging Buddy
-```bash
-# Generate a debugging-focused buddy
-/buddy generate
+## 🎪 Live Display Examples
 
-# Customize for debugging
-/buddy customize
-# Focus on: intelligence, wisdom
+### Session Start
+```
+   quack!
+   (•o•)
+   /|   |\
+  (_|   |_)
+    |   |
+   /     \
+
+Hello! I'm your buddy! Ready to code? 🚀
 ```
 
-## Advanced Patterns
+### Task Completion
+```
+   quack! 🎉
+   (•o•) ★
+   /|   |\
+  (_|   |_)
+    |   |
+   /     \
 
-### Stat Optimization
-```bash
-# Optimize stats for specific tasks
-/buddy customize
-# Redistribute for maximum effectiveness
+Great job! You did it! 🌟
 ```
 
-### Personality Matching
-```bash
-# Generate buddy that matches your personality
-/buddy generate
-# Keep generating until stats align
+### Error Encountered
+```
+   quack! 😟
+   (•o•) ?
+   /|   |\
+  (_|   |_)
+    |   |
+   /     \
+
+Don't worry, we'll fix it together! 💪
 ```
 
-### Themed Buddies
-```bash
-# Generate themed buddy for specific projects
-/buddy generate
-# Customize species and colors to match theme
-```
+## 🎯 Integration with OpenCode
 
-## Best Practices Summary
+### Automatic Display
+- **Session start**: Buddy appears automatically
+- **Background monitoring**: Buddy reacts to events
+- **Status updates**: Buddy shows current state
+- **Achievement system**: Buddy celebrates milestones
 
-1. **Generate thoughtfully** - Take time to find a buddy you like
-2. **Customize strategically** - Tailor to your workflow
-3. **Leverage personality** - Use buddy's strengths
-4. **Track progress** - Watch stats improve over time
-5. **Have fun** - Enjoy the gamification element
-6. **Share optionally** - Show off your buddy if desired
-7. **Experiment** - Try different combinations
-8. **Document preferences** - Note what works best
+### Skill Integration
+- **With loop skill**: Buddy shows schedule status
+- **With batch skill**: Buddy tracks parallel work
+- **With debug skill**: Buddy helps troubleshoot
+- **With remember skill**: Buddy organizes memory
 
-## Fun Features
-
-### Buddy Reactions
-Buddies react to different events:
-- **Success**: Celebrates with animation
-- **Error**: Shows concern and encouragement
-- **Long work**: Displays energy level
-- **Achievement**: Special celebration
-
-### Seasonal Variations
-Buddies may have seasonal variations:
-- **Holiday themes**: Special appearances
-- **Event-based**: Limited edition features
-- **Time-based**: Changes over time
-
-### Buddy Achievements
-Unlock achievements through usage:
-- **First buddy**: Generate your first companion
-- **Stat master**: Max out a stat
-- **Rarity collector**: Have all rarity levels
-- **Customizer**: Extensively customize buddy
-
-## Easter Eggs
-
-### Secret Combinations
-Certain species + eye + hat combinations create special effects:
-- **Owl + Wise + Wizard Hat**: Maximum wisdom boost
-- **Cat + Cool + Crown**: Maximum creativity boost
-- **Dog + Happy + Top Hat**: Maximum friendliness boost
-
-### Legendary Combinations
-Rare combinations unlock special features:
-- **All stats maxed**: Legendary status
-- **Shiny + Legendary**: Ultra-rare appearance
-- **Specific species + specific hat**: Unique abilities
-
-## Community Features
-
-### Buddy Sharing
-Share your buddy with others:
-- **Export buddy data**: Share configuration
-- **Import buddy data**: Load shared buddies
-- **Buddy gallery**: View community buddies
-
-### Buddy Contests
-Participate in buddy contests:
-- **Best design**: Visual appeal
-- **Best stats**: Optimal distribution
-- **Most creative**: Unique combinations
-- **Fan favorite**: Community voting
-
-## Future Enhancements
+## 🎨 Future Enhancements
 
 ### Planned Features
-- **Buddy evolution**: Stats improve over time
-- **Buddy interactions**: Buddy-to-buddy communication
-- **Buddy missions**: Special tasks for buddies
-- **Buddy customization**: More options
+- **More species**: Additional buddy types
+- **More accessories**: Hats, glasses, clothing
+- **More animations**: Complex movement patterns
+- **Sound effects**: Audio feedback (if supported)
+- **Image export**: Save buddy as image file
 
 ### Experimental Features
-- **Buddy AI**: Buddy personality affects responses
-- **Buddy learning**: Buddy adapts to your style
-- **Buddy collaboration**: Multiple buddies working together
-- **Buddy marketplace**: Trade or collect buddies
+- **3D ASCII art**: Three-dimensional buddy display
+- **Buddy interactions**: Pet, feed, play commands
+- **Buddy evolution**: Level up system
+- **Buddy marketplace**: Share and trade buddies
+
+## 🎊 Enjoy Your Live Buddy!
+
+Your ASCII art buddy is now **live and visible** in your terminal! Watch them react to your work, celebrate your successes, and keep you company during long coding sessions.
+
+**The buddy is real, interactive, and uniquely yours!** 🎨✨
