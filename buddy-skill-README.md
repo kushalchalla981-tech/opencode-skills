@@ -713,18 +713,11 @@ This skill is part of the OpenCode project and follows the same license terms.
 
 ---
 
-## 🎉 Acknowledgments
-
-- Inspired by digital pet games and procedural generation
-- Built with love for the OpenCode community
-- ASCII art designs by talented contributors
-- Community feedback and suggestions
-
----
-
 <div align="center">
 
-**Made with ❤️ by the OpenCode community**
+**📧 For review, complaints, improvements, or any other feedback:**
+
+**kushalchalla981@gmail.com**
 
 [⬆ Back to Top](#-buddy-skill---procedurally-generated-companion-avatars)
 
