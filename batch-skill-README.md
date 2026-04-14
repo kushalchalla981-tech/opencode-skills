@@ -469,8 +469,8 @@ Ready to orchestrate your first large-scale change?
 
 <div align="center">
 
-**Made with ❤️ for the OpenCode community**
+**📧 For review, complaints, improvements, or any other feedback:**
 
-[![OpenCode](https://img.shields.io/badge/OpenCode-Batch_Skill-purple?style=for-the-badge&logo=opencode)](https://github.com/kushalchalla981-tech/opencode-skills)
+**kushalchalla981@gmail.com**
 
 </div>
