@@ -489,8 +489,8 @@ Ready to schedule your first recurring task?
 
 <div align="center">
 
-**Made with ❤️ for the OpenCode community**
+**📧 For review, complaints, improvements, or any other feedback:**
 
-[![OpenCode](https://img.shields.io/badge/OpenCode-Loop_Skill-blue?style=for-the-badge&logo=opencode)](https://github.com/kushalchalla981-tech/opencode-skills)
+**kushalchalla981@gmail.com**
 
 </div>
