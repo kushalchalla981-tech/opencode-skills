@@ -503,8 +503,8 @@ Ready to customize your keyboard shortcuts?
 
 <div align="center">
 
-**Made with ❤️ for the OpenCode community**
+**📧 For review, complaints, improvements, or any other feedback:**
 
-[![OpenCode](https://img.shields.io/badge/OpenCode-Keybindings_Help_Skill-indigo?style=for-the-badge&logo=opencode)](https://github.com/kushalchalla981-tech/opencode-skills)
+**kushalchalla981@gmail.com**
 
 </div>
