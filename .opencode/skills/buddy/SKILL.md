@@ -15,25 +15,74 @@ context: inline
 
 ## Overview
 
-The Buddy skill generates and displays **live ASCII art companion avatars** in your terminal! Each buddy is uniquely created from your user ID with deterministic generation, ensuring consistency across sessions while providing variety and personality.
+The Buddy skill generates and displays **live ASCII art companion avatars** in your terminal! Each buddy is **randomly generated** when the skill is loaded and **stays visible throughout your entire session**, providing constant companionship and visual feedback.
 
 ## 🎨 What Makes This Special
 
 **Unlike other buddy systems, this creates ACTUAL VISUAL BUDDIES that you can see:**
 - ✅ **Live ASCII art rendering** in your terminal
+- ✅ **Random buddy generation** - different buddy each time!
+- ✅ **Session persistence** - buddy stays visible throughout session
 - ✅ **Animated displays** with movement and expressions
 - ✅ **Different species** with unique visual designs
 - ✅ **Rarity-based visual effects** (shimmering, glowing, etc.)
-- ✅ **Interactive customization** of appearance and stats
-- ✅ **Real-time display updates** as your buddy evolves
+- ✅ **Interactive responses** to your activities
+- ✅ **Real-time display updates** as your buddy reacts
+
+## 🚀 How It Works
+
+### Automatic Session Integration
+
+When the buddy skill is loaded:
+
+1. **Random buddy generation** - A unique buddy is created just for you
+2. **Instant display** - Your buddy appears in the terminal
+3. **Session persistence** - Buddy stays visible throughout the session
+4. **Interactive responses** - Buddy reacts to your activities
+5. **Automatic cleanup** - Buddy resources are cleaned up on session end
+
+### Random Generation System
+
+Each time the buddy skill is loaded, you get a **completely random buddy**:
+
+- **Random species** (duck, owl, cat, dog, rabbit, fox, bear, penguin)
+- **Random rarity** (common, uncommon, rare, epic, legendary)
+- **Random expression** (normal, happy, excited, thinking, cool)
+- **Random accessories** (hat, glasses, bow, crown, bandana)
+- **Random stats** (intelligence, creativity, friendliness, energy, wisdom)
+- **1% shiny chance** for special rainbow effects!
+
+### Session Persistence
+
+Your buddy **stays with you** throughout the entire session:
+
+- **Visible at all times** - Buddy remains displayed
+- **Reacts to activities** - Updates based on what you're doing
+- **Responds to skill execution** - Celebrates successes, helps with errors
+- **Animated expressions** - Changes mood based on context
+- **Automatic cleanup** - Resources freed when session ends
 
 ## Usage
 
+### Automatic Loading (Recommended)
+
+The buddy skill **automatically loads and displays** when you use it:
+
 ```bash
-# Show your current buddy (with animation!)
+# Load buddy skill - buddy appears automatically!
+/buddy
+
+# Your random buddy is now visible and will stay with you
+# throughout the entire session!
+```
+
+### Manual Commands
+
+```bash
+# Show your current buddy
 /buddy show
 
-# Generate a new buddy
+# Generate a new random buddy
 /buddy generate
 
 # Customize your buddy
@@ -44,6 +93,40 @@ The Buddy skill generates and displays **live ASCII art companion avatars** in y
 
 # Animate your buddy
 /buddy animate
+```
+
+### Integration with Skill Loading
+
+The buddy system integrates seamlessly with OpenCode's skill loading:
+
+```typescript
+import { initializeBuddy, displayBuddy, generateNewBuddy } from './buddy-integration.js'
+
+// Initialize buddy system
+initializeBuddy()
+
+// Display current buddy
+displayBuddy()
+
+// Generate new random buddy
+const newBuddy = generateNewBuddy()
+displayBuddy(newBuddy, 'New buddy arrived!')
+```
+
+### Session-Based Behavior
+
+```bash
+# Session starts
+/buddy
+# → Random buddy appears and stays visible
+
+# During session
+# → Buddy reacts to your activities
+# → Buddy responds to skill execution
+# → Buddy updates expressions based on context
+
+# Session ends
+# → Buddy resources are automatically cleaned up
 ```
 
 ## 🎭 Buddy Species (Visual Designs)
@@ -295,45 +378,98 @@ Each buddy has unique stats that affect their behavior:
 
 ## 🛠️ Technical Implementation
 
-### ASCII Art Generation
+### Integration Architecture
+
+The buddy system uses a three-layer architecture:
+
+1. **Buddy Integration Layer** (`buddy-integration.ts`)
+   - Random buddy generation
+   - Session management
+   - Display control
+   - Animation system
+
+2. **Skill Loader Hooks** (`buddy-skill-loader.ts`)
+   - Skill load hooks
+   - Activity monitoring
+   - Session lifecycle
+   - Event handling
+
+3. **Demonstration Layer** (`buddy-demo.js`)
+   - Usage examples
+   - Integration testing
+   - Feature demonstration
+
+### Random Generation Algorithm
+
 ```typescript
-// Procedural ASCII art generation
-function generateBuddyArt(species: string, rarity: string): string {
-  // Select base template based on species
-  // Add detail based on rarity
-  // Include accessories if applicable
-  // Apply visual effects
-  // Return complete ASCII art
+// Random buddy generation
+function generateRandomBuddy(): Buddy {
+  const species = randomChoice(['duck', 'owl', 'cat', 'dog', 'rabbit', 'fox', 'bear', 'penguin'])
+  const rarity = rollWeightedRarity() // 50% common, 30% uncommon, 15% rare, 4% epic, 1% legendary
+  const expression = randomChoice(['normal', 'happy', 'excited', 'thinking', 'cool'])
+  const accessory = randomChoice(['none', 'hat', 'glasses', 'bow', 'crown', 'bandana'])
+  const shiny = Math.random() < 0.01 // 1% shiny chance
+
+  return {
+    species,
+    rarity,
+    expression,
+    accessory,
+    shiny,
+    stats: generateRandomStats(rarity)
+  }
 }
 ```
 
-### Animation System
+### Session Persistence
+
 ```typescript
-// Frame-based animation
-function animateBuddy(buddy: Buddy): void {
-  const frames = generateFrames(buddy);
-  let currentFrame = 0;
-  
-  setInterval(() => {
-    clearDisplay();
-    renderFrame(frames[currentFrame]);
-    currentFrame = (currentFrame + 1) % frames.length;
-  }, 500); // 2 FPS animation
+// Buddy stays visible throughout session
+class BuddyIntegration {
+  private currentBuddy: Buddy
+  private display: BuddyDisplay
+  private sessionStartTime: number
+
+  initializeForSkillLoad(): void {
+    // Generate random buddy
+    this.currentBuddy = this.generateRandomBuddy()
+
+    // Display buddy
+    this.displayBuddy(this.currentBuddy, 'Your session buddy has arrived!')
+
+    // Start animation
+    this.startAnimation(this.currentBuddy)
+  }
+
+  // Buddy stays visible until session ends
+  cleanup(): void {
+    this.stopAnimation()
+    this.hideBuddy()
+  }
 }
 ```
 
-### Terminal Detection
+### Activity Monitoring
+
 ```typescript
-// Check terminal capabilities
-function detectTerminalCapabilities(): {
-  colors: boolean;
-  unicode: boolean;
-  size: { width: number; height: number };
-} {
-  // Detect terminal type
-  // Check color support
-  // Measure terminal size
-  // Return capabilities
+// Buddy responds to user activities
+function onUserActivity(activity: string): void {
+  const currentBuddy = getCurrentBuddy()
+
+  // Update expression based on activity
+  let newExpression = currentBuddy.expression
+
+  if (activity.includes('error')) {
+    newExpression = 'thinking'
+  } else if (activity.includes('success')) {
+    newExpression = 'excited'
+  } else if (activity.includes('help')) {
+    newExpression = 'happy'
+  }
+
+  // Update buddy display
+  updateExpression(newExpression)
+  displayBuddy(currentBuddy, `Responding to: ${activity}`)
 }
 ```
 
@@ -529,10 +665,69 @@ Don't worry, we'll fix it together! 💪
 ## 🎯 Integration with OpenCode
 
 ### Automatic Display
-- **Session start**: Buddy appears automatically
-- **Background monitoring**: Buddy reacts to events
-- **Status updates**: Buddy shows current state
+- **Session start**: Buddy appears automatically when skill is loaded
+- **Background monitoring**: Buddy reacts to events throughout session
+- **Status updates**: Buddy shows current state and reactions
 - **Achievement system**: Buddy celebrates milestones
+
+### Skill Loading Integration
+
+The buddy system hooks into OpenCode's skill loading:
+
+```typescript
+import { integrateBuddyWithSkillLoader } from './buddy-skill-loader.js'
+
+// Integrate buddy with skill loader
+const hooks = integrateBuddyWithSkillLoader()
+
+// Hooks are automatically called:
+// - beforeSkillLoad: Initialize buddy when buddy skill loads
+// - afterSkillLoad: Display buddy and add metadata
+// - onSkillUnload: Hide buddy when skill unloads
+// - onSessionStart: Initialize buddy system
+// - onSessionEnd: Cleanup buddy resources
+// - onUserActivity: Update buddy based on activities
+// - onSkillExecution: React to skill execution status
+```
+
+### Activity-Based Responses
+
+Your buddy responds to your activities:
+
+```typescript
+// User asks for help
+onUserActivity('help with loop skill')
+// → Buddy expression changes to 'happy'
+// → Buddy displays: "Happy to help!"
+
+// User completes task successfully
+onUserActivity('batch processing completed')
+// → Buddy expression changes to 'excited'
+// → Buddy displays: "Great job!"
+
+// User encounters error
+onUserActivity('error in debug skill')
+// → Buddy expression changes to 'thinking'
+// → Buddy displays: "Let's figure it out!"
+```
+
+### Skill Execution Reactions
+
+Buddy reacts to skill execution:
+
+```typescript
+// Skill starts running
+onSkillExecution('loop', 'running')
+// → Buddy looks excited: "loop is running..."
+
+// Skill completes successfully
+onSkillExecution('loop', 'success')
+// → Buddy celebrates: "loop completed successfully!"
+
+// Skill encounters error
+onSkillExecution('debug', 'error')
+// → Buddy looks concerned: "debug encountered an issue..."
+```
 
 ### Skill Integration
 - **With loop skill**: Buddy shows schedule status
@@ -559,4 +754,225 @@ Don't worry, we'll fix it together! 💪
 
 Your ASCII art buddy is now **live and visible** in your terminal! Watch them react to your work, celebrate your successes, and keep you company during long coding sessions.
 
-**The buddy is real, interactive, and uniquely yours!** 🎨✨
+**The buddy is real, interactive, and uniquely yours - and a new one appears each time!** 🎨✨
+
+## 📁 Integration Files
+
+The buddy system includes several integration files:
+
+### Core Integration
+- **`buddy-integration.ts`** - Main buddy integration system
+  - Random buddy generation
+  - Session management
+  - Display control
+  - Animation system
+
+### Skill Loading Hooks
+- **`buddy-skill-loader.ts`** - Skill loader integration
+  - Before/after skill load hooks
+  - Activity monitoring
+  - Session lifecycle management
+  - Event handling
+
+### Demonstration
+- **`buddy-demo.js`** - Complete demonstration
+  - Shows all features
+  - Integration examples
+  - Usage patterns
+
+### Original Generator
+- **`buddy-generator.js`** - Original buddy generator
+  - Procedural generation
+  - ASCII art templates
+  - Rarity system
+
+## 🚀 Quick Start
+
+### 1. Load the Buddy Skill
+
+```bash
+/buddy
+```
+
+**Result:** A random buddy appears and stays visible throughout your session!
+
+### 2. Watch Your Buddy React
+
+Your buddy will automatically:
+- React to your activities
+- Respond to skill execution
+- Update expressions based on context
+- Stay visible throughout the session
+
+### 3. Generate New Buddy (Optional)
+
+```bash
+/buddy generate
+```
+
+**Result:** A new random buddy appears!
+
+### 4. Enjoy Session Persistence
+
+Your buddy stays with you until:
+- You explicitly hide them
+- The session ends
+- You generate a new buddy
+
+## 🎯 Key Features
+
+### ✅ Random Generation
+- Different buddy every time
+- 8 species, 5 rarity levels
+- Random expressions and accessories
+- 1% shiny chance
+
+### ✅ Session Persistence
+- Stays visible throughout session
+- Reacts to activities
+- Responds to skill execution
+- Automatic cleanup on session end
+
+### ✅ Interactive Responses
+- Activity-based expression changes
+- Skill execution reactions
+- Context-aware updates
+- Real-time display updates
+
+### ✅ Animation System
+- Expression animations
+- Smooth transitions
+- Configurable timing
+- Start/stop control
+
+## 🎨 Customization
+
+While the buddy is randomly generated, you can still customize:
+
+```bash
+# Change expression
+/buddy customize --expression happy
+
+# Add accessory
+/buddy customize --accessory hat
+
+# View stats
+/buddy stats
+
+# Animate
+/buddy animate
+```
+
+## 🔧 Advanced Usage
+
+### Programmatic Integration
+
+```typescript
+import {
+  initializeBuddy,
+  displayBuddy,
+  generateNewBuddy,
+  updateBuddyExpression
+} from './buddy-integration.js'
+
+// Initialize buddy system
+initializeBuddy()
+
+// Generate new random buddy
+const newBuddy = generateNewBuddy()
+displayBuddy(newBuddy, 'New buddy arrived!')
+
+// Update expression based on context
+updateBuddyExpression('excited')
+```
+
+### Skill Loader Integration
+
+```typescript
+import {
+  integrateBuddyWithSkillLoader,
+  initializeBuddySystem,
+  shutdownBuddySystem
+} from './buddy-skill-loader.js'
+
+// Integrate with skill loader
+const hooks = integrateBuddyWithSkillLoader()
+
+// Initialize system
+initializeBuddySystem()
+
+// System automatically handles:
+// - Skill loading
+// - Activity monitoring
+// - Session lifecycle
+
+// Shutdown when done
+shutdownBuddySystem()
+```
+
+## 🎪 Live Display Examples
+
+### Session Start
+```
+🎨 Loading buddy skill...
+✅ Buddy initialized and displayed!
+
+   quack!
+   (•o•)
+   /|   |\
+  (_|   |_)
+    |   |
+   /     \
+
+Stats:
+  Intelligence: ████████░░ 82
+  Creativity:   ██████░░░░ 65
+  Friendliness:  █████████░ 91
+  Energy:       ███████░░░ 78
+  Wisdom:       █████████░ 89
+
+Rarity: RARE
+Species: Duck
+Session Time: 0s
+
+🎉 Your session buddy has arrived!
+```
+
+### Activity Response
+```
+User activity: help with loop skill
+😊 Buddy is happy to help!
+✅ Buddy expression updated to: happy
+
+   quack! 😊
+   (•o•)
+   /|   |\
+  (_|   |_)
+    |   |
+   /     \
+
+Responding to: help with loop skill
+```
+
+### Skill Execution Success
+```
+Executing skill: loop
+Status: success
+🎉 Buddy celebrates your success!
+✅ Buddy expression updated to: excited
+
+   quack! 🎉
+   (•o•)  ★
+   /|   |\
+  (_|   |_)
+    |   |
+   /     \
+
+🎉 loop completed successfully!
+```
+
+## 🎊 Enjoy Your Random Session Buddies!
+
+Every time you load the buddy skill, you get a **new random buddy** that stays with you throughout your session. Watch them react to your work, celebrate your successes, and keep you company during long coding sessions.
+
+**Each buddy is unique, random, and ready to accompany you!** 🎨✨
