@@ -538,8 +538,8 @@ Ready to debug your session?
 
 <div align="center">
 
-**Made with ❤️ for the OpenCode community**
+**📧 For review, complaints, improvements, or any other feedback:**
 
-[![OpenCode](https://img.shields.io/badge/OpenCode-Debug_Skill-cyan?style=for-the-badge&logo=openode)](https://github.com/kushalchalla981-tech/opencode-skills)
+**kushalchalla981@gmail.com**
 
 </div>
