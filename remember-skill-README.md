@@ -530,8 +530,8 @@ Ready to review your memory entries?
 
 <div align="center">
 
-**Made with ❤️ for the OpenCode community**
+**📧 For review, complaints, improvements, or any other feedback:**
 
-[![OpenCode](https://img.shields.io/badge/OpenCode-Remember_Skill-yellow?style=for-the-badge&logo=opencode)](https://github.com/kushalchalla981-tech/opencode-skills)
+**kushalchalla981@gmail.com**
 
 </div>
