@@ -489,8 +489,8 @@ Ready to configure your OpenCode environment?
 
 <div align="center">
 
-**Made with ❤️ for the OpenCode community**
+**📧 For review, complaints, improvements, or any other feedback:**
 
-[![OpenCode](https://img.shields.io/badge/OpenCode-Update_Config_Skill-red?style=for-the-badge&logo=opencode)](https://github.com/kushalchalla981-tech/opencode-skills)
+**kushalchalla981@gmail.com**
 
 </div>
