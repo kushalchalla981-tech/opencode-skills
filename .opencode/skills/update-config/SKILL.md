@@ -87,9 +87,9 @@ Choose the appropriate file based on scope:
 
 | File | Scope | Git | Use For |
 |------|-------|-----|---------|
-| `~/.claude/settings.json` | Global | N/A | Personal preferences for all projects |
-| `.claude/settings.json` | Project | Commit | Team-wide hooks, permissions, plugins |
-| `.claude/settings.local.json` | Project | Gitignore | Personal overrides for this project |
+| `~/.opencode/settings.json` | Global | N/A | Personal preferences for all projects |
+| `.opencode/settings.json` | Project | Commit | Team-wide hooks, permissions, plugins |
+| `.opencode/settings.local.json` | Project | Gitignore | Personal overrides for this project |
 
 **Settings load in order:** user → project → local (later overrides earlier)
 
@@ -196,7 +196,7 @@ Set `commit` or `pr` to empty string `""` to hide that attribution.
 }
 ```
 
-Plugin syntax: `plugin-name@source` where source is `claude-code-marketplace`, `claude-plugins-official`, or `builtin`.
+Plugin syntax: `plugin-name@source` where source is `opencode-marketplace`, `opencode-plugins-official`, or `builtin`.
 
 ### Other Settings
 - `language`: Preferred response language (e.g., "japanese")
@@ -337,7 +337,7 @@ Hooks can return JSON to control behavior:
       "matcher": "Bash",
       "hooks": [{
         "type": "command",
-        "command": "jq -r '.tool_input.command' >> ~/.claude/bash-log.txt"
+        "command": "jq -r '.tool_input.command' >> ~/.opencode/bash-log.txt"
       }]
     }]
   }
@@ -400,7 +400,7 @@ Most commands don't read stdin, so `echo '{}' | <cmd>` suffices.
 Check exit code AND side effect (file actually formatted, test actually ran). If it fails you get a real error - fix (wrong package manager? tool not installed? jq path wrong?) and retest. Once it works, wrap with `2>/dev/null || true` (unless the user wants a blocking check).
 
 ### 4. Write the JSON
-Merge into the target file (schema shape in the "Hook Structure" section above). If this creates `.claude/settings.local.json` for the first time, add it to .gitignore - the Write tool doesn't auto-gitignore it.
+Merge into the target file (schema shape in the "Hook Structure" section above). If this creates `.opencode/settings.local.json` for the first time, add it to .gitignore - the Write tool doesn't auto-gitignore it.
 
 ### 5. Validate Syntax + Schema in One Shot
 
@@ -422,12 +422,12 @@ Only for `Pre|PostToolUse` on a matcher you can trigger in-turn (`Write|Edit` vi
 Introduce a detectable violation via Edit (two consecutive blank lines, bad indentation, missing semicolon - something this formatter corrects; NOT trailing whitespace, Edit strips that before writing), re-read, confirm the hook **fixed** it.
 
 **For anything else:**
-Temporarily prefix the command in settings.json with `echo "$(date) hook fired" >> /tmp/claude-hook-check.txt; `, trigger the matching tool (Edit for `Write|Edit`, a harmless `true` for `Bash`), read the sentinel file.
+Temporarily prefix the command in settings.json with `echo "$(date) hook fired" >> /tmp/opencode-hook-check.txt; `, trigger the matching tool (Edit for `Write|Edit`, a harmless `true` for `Bash`), read the sentinel file.
 
 **Always clean up** - revert the violation, strip the sentinel prefix - whether the proof passed or failed.
 
 **If proof fails but pipe-test passed and `jq -e` passed:**
-The settings watcher isn't watching `.claude/` - it only watches directories that had a settings file when this session started. The hook is written correctly. Tell the user to open `/hooks` once (reloads config) or restart - you can't do this yourself; `/hooks` is a user UI menu and opening it ends this turn.
+The settings watcher isn't watching `.opencode/` - it only watches directories that had a settings file when this session started. The hook is written correctly. Tell the user to open `/hooks` once (reloads config) or restart - you can't do this yourself; `/hooks` is a user UI menu and opening it ends this turn.
 
 ### 7. Handoff
 Tell the user the hook is live (or needs `/hooks`/restart per the watcher caveat). Point them at `/hooks` to review, edit, or disable it later. The UI only shows "Ran N hooks" if a hook errors or is slow - silent success is invisible by design.
@@ -436,10 +436,10 @@ Tell the user the hook is live (or needs `/hooks`/restart per the watcher caveat
 
 ### Adding a Hook
 
-**User:** "Format my code after Claude writes it"
+**User:** "Format my code after OpenCode AI writes it"
 
 1. **Clarify**: Which formatter? (prettier, gofmt, etc.)
-2. **Read**: `.claude/settings.json` (or create if missing)
+2. **Read**: `.opencode/settings.json` (or create if missing)
 3. **Merge**: Add to existing hooks, don't replace
 4. **Result**:
 ```json
@@ -485,7 +485,7 @@ Tell the user the hook is live (or needs `/hooks`/restart per the watcher caveat
 ## Troubleshooting Hooks
 
 If a hook isn't running:
-1. **Check the settings file** - Read ~/.claude/settings.json or .claude/settings.json
+1. **Check the settings file** - Read ~/.opencode/settings.json or .opencode/settings.json
 2. **Verify JSON syntax** - Invalid JSON silently fails
 3. **Check the matcher** - Does it match the tool name? (e.g., "Bash", "Write", "Edit")
 4. **Check hook type** - Is it "command", "prompt", or "agent"?
@@ -497,10 +497,10 @@ If a hook isn't running:
 ### 1. Always Read First
 ```bash
 # Good - Read existing settings
-Read ~/.claude/settings.json
+Read ~/.opencode/settings.json
 
 # Bad - Assume file doesn't exist
-Write ~/.claude/settings.json with new content
+Write ~/.opencode/settings.json with new content
 ```
 
 ### 2. Merge Arrays
@@ -526,7 +526,7 @@ Write ~/.claude/settings.json with new content
 ### 3. Validate JSON
 ```bash
 # Always validate after changes
-jq . ~/.claude/settings.json
+jq . ~/.opencode/settings.json
 ```
 
 ### 4. Test Hooks

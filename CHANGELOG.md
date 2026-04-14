@@ -53,7 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2026-04-14
 
 ### Initial Release
-This is the initial release of the OpenCode Skills collection, featuring 10 production-ready skills extracted from Claude Code's internal architecture and adapted for the OpenCode ecosystem.
+This is the initial release of the OpenCode Skills collection, featuring 10 production-ready skills extracted from OpenCode's internal architecture and adapted for the OpenCode ecosystem.
 
 ### Skills Included
 1. **loop** - Recurring task scheduling with cron expressions
@@ -75,7 +75,7 @@ This is the initial release of the OpenCode Skills collection, featuring 10 prod
 - **Code Examples**: 100+ across all skills
 
 ### Architecture
-Based on Claude Code's internal patterns:
+Based on OpenCode's internal patterns:
 - Tool System with input/output schemas
 - Permission System with multi-layer checks
 - State Management with immutable updates

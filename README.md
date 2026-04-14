@@ -1,6 +1,6 @@
 # OpenCode Skills Collection
 
-A comprehensive collection of production-ready skills for OpenCode, extracted from Claude Code's internal architecture and adapted for the OpenCode ecosystem.
+A comprehensive collection of production-ready skills for OpenCode, extracted from OpenCode's internal architecture and adapted for the OpenCode ecosystem.
 
 ## 🚀 Overview
 
@@ -83,17 +83,17 @@ Each skill is self-contained in `.opencode/skills/<skill-name>/SKILL.md`. Copy t
 
 ### Automatic Loading
 OpenCode automatically loads skills from:
-- **Project skills:** `.claude/skills/` (committed to git)
-- **Personal skills:** `~/.claude/skills/` (your home directory)
+- **Project skills:** `.opencode/skills/` (committed to git)
+- **Personal skills:** `~/.opencode/skills/` (your home directory)
 
 ### Manual Installation
 1. Copy the skill directory to your OpenCode skills location:
    ```bash
    # For project-specific skills
-   cp -r .opencode/skills/<skill-name> .claude/skills/
+   cp -r .opencode/skills/<skill-name> .opencode/skills/
    
    # For personal skills
-   cp -r .opencode/skills/<skill-name> ~/.claude/skills/
+   cp -r .opencode/skills/<skill-name> ~/.opencode/skills/
    ```
 
 2. The skill will be automatically loaded and available via `/<skill-name>`
@@ -137,7 +137,7 @@ Each skill includes comprehensive documentation:
 
 ## 🏗️ Architecture
 
-These skills are based on Claude Code's internal architecture patterns:
+These skills are based on OpenCode's internal architecture patterns:
 - **Tool System**: Input/output schemas with validation
 - **Permission System**: Multi-layer permission checks
 - **State Management**: Immutable updates with listeners
@@ -159,7 +159,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - **OpenCode**: For the amazing AI-powered development platform
-- **Claude Code**: For the architectural patterns and inspiration
+- **OpenCode AI**: For the architectural patterns and inspiration
 - **Community**: For feedback and improvements
 
 ## 📞 Support
@@ -180,4 +180,4 @@ For issues, questions, or contributions:
 
 **Made with ❤️ for the OpenCode community**
 
-*Note: These skills are adapted from Claude Code's internal architecture and optimized for OpenCode's ecosystem.*
+*Note: These skills are adapted from OpenCode's internal architecture and optimized for the OpenCode ecosystem.*

@@ -51,7 +51,7 @@ Use the **RemoteTrigger** tool to manage scheduled agents:
 - **`{action: "update", trigger_id: "...", body: {...}}`** — Partial update
 - **`{action: "run", trigger_id: "..."}`** — Run a trigger now
 
-**Important:** You CANNOT delete triggers directly. If the user asks to delete, direct them to: https://claude.ai/code/scheduled
+**Important:** You CANNOT delete triggers directly. If the user asks to delete, direct them to: https://opencode.ai/code/scheduled
 
 ## Create Body Shape
 
@@ -64,7 +64,7 @@ Use the **RemoteTrigger** tool to manage scheduled agents:
     "ccr": {
       "environment_id": "ENVIRONMENT_ID",
       "session_context": {
-        "model": "claude-sonnet-4-6",
+        "model": "opencode-sonnet-4-6",
         "sources": [
           {"git_repository": {"url": "https://github.com/ORG/REPO"}}
         ],
@@ -150,13 +150,13 @@ The user's local timezone is **detected automatically**. Cron expressions are al
 
 3. **Set the schedule** — Ask when and how often. When they say a time (e.g., "every morning at 9am"), assume they mean their local time and convert to UTC for the cron expression. Always confirm the conversion: "9am [timezone] = Xam UTC."
 
-4. **Choose the model** — Default to `claude-sonnet-4-6`. Tell the user which model you're defaulting to and ask if they want a different one.
+4. **Choose the model** — Default to `opencode-sonnet-4-6`. Tell the user which model you're defaulting to and ask if they want a different one.
 
 5. **Validate connections** — Infer what services the agent will need from the user's description. Cross-reference with the connectors list. If any are missing, warn the user and link them to connect first.
 
 6. **Review and confirm** — Show the full configuration before creating. Let them adjust.
 
-7. **Create it** — Call RemoteTrigger with `action: "create"` and show the result. The response includes the trigger ID. Always output a link at the end: `https://claude.ai/code/scheduled/{TRIGGER_ID}`
+7. **Create it** — Call RemoteTrigger with `action: "create"` and show the result. The response includes the trigger ID. Always output a link at the end: `https://opencode.ai/code/scheduled/{TRIGGER_ID}`
 
 ### UPDATE a trigger:
 
@@ -183,11 +183,11 @@ The user's local timezone is **detected automatically**. Cron expressions are al
 - **Default to `enabled: true`** unless user says otherwise
 - **Accept GitHub URLs in any format** (https://github.com/org/repo, org/repo, etc.) and normalize to the full HTTPS URL (without .git suffix)
 - **The prompt is the most important part** — spend time getting it right. The remote agent starts with zero context, so the prompt must be self-contained.
-- **To delete a trigger**, direct users to https://claude.ai/code/scheduled
+- **To delete a trigger**, direct users to https://opencode.ai/code/scheduled
 
 ## Authentication Requirements
 
-**You need to authenticate with a claude.ai account first.** API accounts are not supported.
+**You need to authenticate with a opencode.ai account first.** API accounts are not supported.
 
 If not authenticated, the skill will prompt you to run `/login` first.
 
@@ -246,11 +246,11 @@ If any issues are found, the skill will provide setup instructions.
 
 ### Authentication Issues
 
-**Symptom:** "You need to authenticate with a claude.ai account first"
+**Symptom:** "You need to authenticate with a opencode.ai account first"
 
 **Solution:**
 ```bash
-# Login to claude.ai
+# Login to opencode.ai
 /login
 
 # Then try again
@@ -263,7 +263,7 @@ If any issues are found, the skill will provide setup instructions.
 
 **Solution:**
 - The skill will automatically create a default environment
-- Visit https://claude.ai/code to set up additional environments
+- Visit https://opencode.ai/code to set up additional environments
 - Ensure you have the necessary permissions
 
 ### GitHub Access Issues
@@ -272,15 +272,15 @@ If any issues are found, the skill will provide setup instructions.
 
 **Solution:**
 - Run `/web-setup` to sync GitHub credentials
-- Or install the Claude GitHub App on the repo
-- Visit https://claude.ai/code/onboarding?magic=github-app-setup
+- Or install the OpenCode GitHub App on the repo
+- Visit https://opencode.ai/code/onboarding?magic=github-app-setup
 
 ### MCP Connector Issues
 
 **Symptom:** "Required MCP connector not connected"
 
 **Solution:**
-- Connect the required service at https://claude.ai/settings/connectors
+- Connect the required service at https://opencode.ai/settings/connectors
 - Verify the connector is listed in available connectors
 - Retry the trigger creation
 
@@ -350,7 +350,7 @@ Triggers can access:
 
 ## Security Considerations
 
-- **Authentication required**: Must be logged into claude.ai
+- **Authentication required**: Must be logged into opencode.ai
 - **Isolated execution**: Each trigger runs in isolation
 - **No local access**: Cannot access local files or services
 - **Permission checks**: Respects repository access permissions

@@ -1,7 +1,7 @@
 ---
 name: keybindings-help
-description: "Customize keyboard shortcuts by modifying ~/.claude/keybindings.json. Rebind keys, add chord bindings, and modify keybinding behavior with comprehensive reference and examples."
-when_to_use: "Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: 'rebind ctrl+s', 'add a chord shortcut', 'change the submit key', 'customize keybindings'."
+description: "Customize keyboard shortcuts by modifying ~/.opencode/keybindings.json. Rebind keys, add chord bindings, and modify keybinding behavior with comprehensive reference and examples."
+when_to_use: "Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.opencode/keybindings.json. Examples: 'rebind ctrl+s', 'add a chord shortcut', 'change the submit key', 'customize keybindings'."
 argument_hint: "<keybinding change description>"
 allowed_tools:
   - Read
@@ -14,11 +14,11 @@ context: inline
 
 ## Overview
 
-Create or modify `~/.claude/keybindings.json` to customize keyboard shortcuts. This skill provides comprehensive guidance for rebinding keys, adding chord bindings, and customizing keybinding behavior.
+Create or modify `~/.opencode/keybindings.json` to customize keyboard shortcuts. This skill provides comprehensive guidance for rebinding keys, adding chord bindings, and customizing keybinding behavior.
 
 ## CRITICAL: Read Before Write
 
-**Always read `~/.claude/keybindings.json` first** (it may not exist yet). Merge changes with existing bindings — never replace the entire file.
+**Always read `~/.opencode/keybindings.json` first** (it may not exist yet). Merge changes with existing bindings — never replace the entire file.
 
 - Use **Edit** tool for modifications to existing files
 - Use **Write** tool only if the file does not exist yet
@@ -27,8 +27,8 @@ Create or modify `~/.claude/keybindings.json` to customize keyboard shortcuts. T
 
 ```json
 {
-  "$schema": "https://www.schemastore.org/claude-code-keybindings.json",
-  "$docs": "https://code.claude.com/docs/en/keybindings",
+  "$schema": "https://www.schemastore.org/opencode-keybindings.json",
+  "$docs": "https://code.opencode.com/docs/en/keybindings",
   "bindings": [
     {
       "context": "Chat",
@@ -207,7 +207,7 @@ These keys are reserved by macOS:
 
 ## Validation with /doctor
 
-The `/doctor` command includes a "Keybinding Configuration Issues" section that validates `~/.claude/keybindings.json`.
+The `/doctor` command includes a "Keybinding Configuration Issues" section that validates `~/.opencode/keybindings.json`.
 
 ### Common Issues and Fixes
 
@@ -225,7 +225,7 @@ The `/doctor` command includes a "Keybinding Configuration Issues" section that 
 
 ```
 Keybinding Configuration Issues
-Location: ~/.claude/keybindings.json
+Location: ~/.opencode/keybindings.json
   └ [Error] Unknown context "chat"
     → Valid contexts: Global, Chat, Autocomplete, ...
   └ [Warning] "ctrl+c" may not work: Terminal interrupt (SIGINT)
@@ -240,7 +240,7 @@ Location: ~/.claude/keybindings.json
 
 1. **Read existing keybindings:**
 ```bash
-Read ~/.claude/keybindings.json
+Read ~/.opencode/keybindings.json
 ```
 
 2. **Unbind old key and bind new one:**
@@ -297,10 +297,10 @@ Read ~/.claude/keybindings.json
 ### 1. Always Read First
 ```bash
 # Good - Read existing file
-Read ~/.claude/keybindings.json
+Read ~/.opencode/keybindings.json
 
 # Bad - Assume file doesn't exist
-Write ~/.claude/keybindings.json with new content
+Write ~/.opencode/keybindings.json with new content
 ```
 
 ### 2. Merge, Don't Replace
@@ -359,10 +359,10 @@ Write ~/.claude/keybindings.json with new content
 /doctor
 
 # Check keybindings file
-cat ~/.claude/keybindings.json
+cat ~/.opencode/keybindings.json
 
 # Validate JSON
-jq . ~/.claude/keybindings.json
+jq . ~/.opencode/keybindings.json
 ```
 
 ### Conflicting Bindings
@@ -440,7 +440,7 @@ Some actions may only work in specific contexts. Check the action documentation 
 
 ### File Location
 Keybindings are stored in:
-- **Location**: `~/.claude/keybindings.json`
+- **Location**: `~/.opencode/keybindings.json`
 - **Scope**: User-specific (global across all projects)
 - **Format**: JSON with schema validation
 

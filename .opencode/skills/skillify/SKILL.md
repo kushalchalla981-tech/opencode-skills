@@ -75,8 +75,8 @@ The skill uses AskUserQuestion to understand what you want to automate:
 - Suggests arguments based on what was observed
 - Asks about execution mode (inline vs forked)
 - Asks where to save the skill:
-  - **This repo** (`.claude/skills/<name>/SKILL.md`) - Project-specific workflows
-  - **Personal** (`~/.claude/skills/<name>/SKILL.md`) - Cross-repo personal workflows
+  - **This repo** (`.opencode/skills/<name>/SKILL.md`) - Project-specific workflows
+  - **Personal** (`~/.opencode/skills/<name>/SKILL.md`) - Cross-repo personal workflows
 
 **Round 3: Breaking Down Each Step**
 For each major step, the skill asks:

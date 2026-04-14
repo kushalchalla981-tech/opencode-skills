@@ -1,7 +1,7 @@
 ---
 name: remember
-description: "Review auto-memory entries and propose promotions to CLAUDE.md, CLAUDE.local.md, or shared memory. Detects outdated, conflicting, and duplicate entries across memory layers."
-when_to_use: "Use when the user wants to review, organize, or promote their auto-memory entries. Also useful for cleaning up outdated or conflicting entries across CLAUDE.md, CLAUDE.local.md, and auto-memory."
+description: "Review auto-memory entries and propose promotions to OpenCode AI.md, OpenCode AI.local.md, or shared memory. Detects outdated, conflicting, and duplicate entries across memory layers."
+when_to_use: "Use when the user wants to review, organize, or promote their auto-memory entries. Also useful for cleaning up outdated or conflicting entries across OpenCode AI.md, OpenCode AI.local.md, and auto-memory."
 argument_hint: "[specific focus or area to review]"
 allowed_tools:
   - Read
@@ -42,10 +42,10 @@ The Remember skill reviews your memory landscape and produces a clear report of 
 
 ## Memory Layers
 
-### 1. CLAUDE.md (Project Memory)
-**Location**: Project root (`CLAUDE.md`)
+### 1. OpenCode AI.md (Project Memory)
+**Location**: Project root (`OpenCode AI.md`)
 
-**Purpose**: Project conventions and instructions for Claude that all contributors should follow
+**Purpose**: Project conventions and instructions for OpenCode AI that all contributors should follow
 
 **What Belongs Here:**
 - Build commands and test procedures
@@ -63,10 +63,10 @@ The Remember skill reviews your memory landscape and produces a clear report of 
 
 **Scope**: Committed to git, visible to all contributors
 
-### 2. CLAUDE.local.md (Personal Memory)
-**Location**: Project root (`CLAUDE.local.md`)
+### 2. OpenCode AI.local.md (Personal Memory)
+**Location**: Project root (`OpenCode AI.local.md`)
 
-**Purpose**: Personal instructions for Claude specific to this user, not applicable to other contributors
+**Purpose**: Personal instructions for OpenCode AI specific to this user, not applicable to other contributors
 
 **What Belongs Here:**
 - Personal coding preferences
@@ -125,8 +125,8 @@ The Remember skill reviews your memory landscape and produces a clear report of 
 The skill reads from all available memory sources:
 
 **Sources Checked:**
-1. `CLAUDE.md` in project root (if exists)
-2. `CLAUDE.local.md` in project root (if exists)
+1. `OpenCode AI.md` in project root (if exists)
+2. `OpenCode AI.local.md` in project root (if exists)
 3. Auto-memory content (already in system prompt)
 4. Team memory sections (if configured)
 
@@ -138,13 +138,13 @@ For each substantive entry in auto-memory, the skill determines the best destina
 
 | Destination | What Belongs There | Examples |
 |---|---|---|
-| **CLAUDE.md** | Project conventions for all contributors | "use bun not npm", "API routes use kebab-case", "test command is bun test" |
-| **CLAUDE.local.md** | Personal instructions for this user only | "I prefer concise responses", "always explain trade-offs", "don't auto-commit" |
+| **OpenCode AI.md** | Project conventions for all contributors | "use bun not npm", "API routes use kebab-case", "test command is bun test" |
+| **OpenCode AI.local.md** | Personal instructions for this user only | "I prefer concise responses", "always explain trade-offs", "don't auto-commit" |
 | **Team memory** | Org-wide knowledge across repositories | "deploy PRs go through #deploy-queue", "staging is at staging.internal" |
 | **Stay in auto-memory** | Working notes, temporary context | Session-specific observations, uncertain patterns |
 
 **Important Distinctions:**
-- CLAUDE.md and CLAUDE.local.md contain **instructions for Claude**, not user preferences for external tools
+- OpenCode AI.md and OpenCode AI.local.md contain **instructions for OpenCode AI**, not user preferences for external tools
 - Workflow practices (PR conventions, merge strategies) are ambiguous - ask whether they're personal or team-wide
 - When unsure, ask rather than guess
 
@@ -155,11 +155,11 @@ For each substantive entry in auto-memory, the skill determines the best destina
 The skill scans across all layers for:
 
 **Duplicates:**
-- Auto-memory entries already captured in CLAUDE.md or CLAUDE.local.md
+- Auto-memory entries already captured in OpenCode AI.md or OpenCode AI.local.md
 - Propose removing from auto-memory
 
 **Outdated:**
-- CLAUDE.md or CLAUDE.local.md entries contradicted by newer auto-memory entries
+- OpenCode AI.md or OpenCode AI.local.md entries contradicted by newer auto-memory entries
 - Propose updating the older layer
 
 **Conflicts:**
@@ -178,7 +178,7 @@ The skill outputs a structured report grouped by action type:
 3. **Ambiguous** - Entries where user input is needed on destination
 4. **No Action Needed** - Brief note on entries that should stay put
 
-**If auto-memory is empty**, the skill says so and offers to review CLAUDE.md for cleanup.
+**If auto-memory is empty**, the skill says so and offers to review OpenCode AI.md for cleanup.
 
 **Success Criteria**: User can review and approve/reject each proposal individually
 
@@ -192,13 +192,13 @@ The skill outputs a structured report grouped by action type:
 
 ### Decision Framework
 
-**When to Promote to CLAUDE.md:**
+**When to Promote to OpenCode AI.md:**
 - Applies to all contributors
 - Project-specific conventions
 - Team-wide workflows
 - Architectural decisions
 
-**When to Promote to CLAUDE.local.md:**
+**When to Promote to OpenCode AI.local.md:**
 - Personal preferences only
 - Individual workflow habits
 - User-specific configurations
@@ -249,7 +249,7 @@ The skill outputs a structured report grouped by action type:
 
 **Auto-memory entry**: "Always use bun for package management"
 
-**Proposed action**: Promote to CLAUDE.md
+**Proposed action**: Promote to OpenCode AI.md
 
 **Rationale**: This is a project convention all contributors should follow
 
@@ -258,7 +258,7 @@ The skill outputs a structured report grouped by action type:
 
 **Auto-memory entry**: "I prefer detailed explanations for complex changes"
 
-**Proposed action**: Promote to CLAUDE.local.md
+**Proposed action**: Promote to OpenCode AI.local.md
 
 **Rationale**: This is a personal preference, not a team convention
 
@@ -266,19 +266,19 @@ The skill outputs a structured report grouped by action type:
 **Scenario**: Same information in multiple layers
 
 **Auto-memory**: "Use bun for package management"
-**CLAUDE.md**: "Use bun not npm for package management"
+**OpenCode AI.md**: "Use bun not npm for package management"
 
-**Proposed action**: Remove from auto-memory (already in CLAUDE.md)
+**Proposed action**: Remove from auto-memory (already in OpenCode AI.md)
 
 **Rationale**: Duplicate information, keep authoritative source
 
 ### Resolving Conflicts
 **Scenario**: Contradictory information across layers
 
-**CLAUDE.md**: "Use functional programming patterns"
+**OpenCode AI.md**: "Use functional programming patterns"
 **Auto-memory**: "Prefer object-oriented approach for this module"
 
-**Proposed action**: Update CLAUDE.md to acknowledge both approaches
+**Proposed action**: Update OpenCode AI.md to acknowledge both approaches
 
 **Rationale**: Conflict needs resolution, auto-memory is more recent
 
@@ -301,7 +301,7 @@ The skill outputs a structured report grouped by action type:
 - You can specify destination directly
 
 ### Memory Files Not Found
-**Issue**: CLAUDE.md or CLAUDE.local.md don't exist
+**Issue**: OpenCode AI.md or OpenCode AI.local.md don't exist
 
 **Solution:**
 - The skill will offer to create them
@@ -347,7 +347,7 @@ The skill integrates with OpenCode's automatic memory system:
 
 ### File System
 The skill works with:
-- Project root files (CLAUDE.md, CLAUDE.local.md)
+- Project root files (OpenCode AI.md, OpenCode AI.local.md)
 - Team memory configuration
 - Auto-memory storage
 
@@ -371,8 +371,8 @@ The skill respects:
 4. **Organize logically**: Group related information together
 
 ### Collaboration Tips
-1. **Share project memory**: Commit CLAUDE.md to git
-2. **Keep personal memory private**: Use CLAUDE.local.md
+1. **Share project memory**: Commit OpenCode AI.md to git
+2. **Keep personal memory private**: Use OpenCode AI.local.md
 3. **Document decisions**: Explain why conventions exist
 4. **Update regularly**: Keep memory current with project evolution
 

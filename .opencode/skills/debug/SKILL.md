@@ -454,9 +454,9 @@ Apply the suggested fixes and verify the issue is resolved.
 
 ### Settings Locations
 Remember that settings are in:
-- **user** - `~/.claude/settings.json`
-- **project** - `.claude/settings.json`
-- **local** - `.claude/settings.local.json`
+- **user** - `~/.opencode/settings.json`
+- **project** - `.opencode/settings.json`
+- **local** - `.opencode/settings.local.json`
 
 ### Log Location
 The debug log for the current session is at a session-specific location that the skill will identify.
