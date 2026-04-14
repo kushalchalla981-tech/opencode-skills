@@ -1,17 +1,32 @@
 ---
 name: buddy
-description: "Generate and display live ASCII art companion avatars with unique species, appearances, and stats. Each buddy is deterministically generated from your user ID with rarity levels and customizable attributes."
+description: "Generate and display live ASCII art companion avatars with unique species, appearances, and stats. Each buddy is randomly generated when the skill is loaded and stays visible throughout the session."
 when_to_use: "Use when you want to see your companion avatar, generate a new buddy, or customize your companion's appearance and stats. The buddy will be displayed as ASCII art in your terminal."
-argument_hint: "[action: show | generate | customize | stats | animate]"
+argument_hint: "[action: show | generate | customize | stats | animate | help]"
 allowed_tools:
   - Read
   - Write
   - Edit
   - Bash
 context: inline
+entrypoint: "node .opencode/skills/buddy/buddy-skill.js"
 ---
 
 # Buddy Skill - Live ASCII Art Companion Avatars
+
+## 🎨 Quick Start
+
+**Load the buddy skill and a random buddy appears automatically!**
+
+```bash
+/buddy
+```
+
+**What happens:**
+- ✅ A random buddy is generated instantly
+- ✅ The buddy appears in your terminal
+- ✅ The buddy stays visible throughout the session
+- ✅ The buddy reacts to your activities
 
 ## Overview
 
