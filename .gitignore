@@ -1,0 +1,42 @@
+# Claude Code source (not part of this repo)
+claude-code-main/
+
+# Test scripts
+test-skills.*
+test-skills.ps1
+test-skills.bat
+test-skills.ts
+
+# Node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build files
+dist/
+build/
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Bun
+bun.lockb
