@@ -843,18 +843,11 @@ This skill is part of the OpenCode project and follows the same license terms.
 
 ---
 
-## 🎉 Acknowledgments
-
-- Inspired by cloud automation platforms
-- Built with love for the OpenCode community
-- Community feedback and suggestions
-- Contributions from DevOps experts
-
----
-
 <div align="center">
 
-**Made with ❤️ by the OpenCode community**
+**📧 For review, complaints, improvements, or any other feedback:**
+
+**kushalchalla981@gmail.com**
 
 [⬆ Back to Top](#-schedule-remote-agents-skill---cloud-based-agent-scheduling)
 
