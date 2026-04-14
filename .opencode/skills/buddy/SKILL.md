@@ -64,16 +64,37 @@ Your buddy **stays with you** throughout the entire session:
 
 ## Usage
 
-### Automatic Loading (Recommended)
+### Automatic Loading (Default)
 
-The buddy skill **automatically loads and displays** when you use it:
+The buddy skill **automatically generates and displays** a random buddy when loaded:
 
 ```bash
 # Load buddy skill - buddy appears automatically!
 /buddy
 
-# Your random buddy is now visible and will stay with you
-# throughout the entire session!
+# A random buddy is generated and displayed instantly!
+# The buddy stays visible throughout the session
+```
+
+**What happens automatically:**
+1. A random buddy is generated
+2. The buddy appears in your terminal
+3. The buddy stays visible throughout the session
+4. The buddy reacts to your activities
+
+### Manual Initialization
+
+If you want to manually initialize the buddy system:
+
+```bash
+# Run initialization script
+node .opencode/skills/buddy/init.js
+
+# Or use shell script (Unix/Linux/Mac)
+bash .opencode/skills/buddy/init.sh
+
+# Or use batch script (Windows)
+.opencode\skills\buddy\init.bat
 ```
 
 ### Manual Commands
